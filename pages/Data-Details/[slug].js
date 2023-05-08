@@ -24,25 +24,49 @@ function Slug(props) {
     }
   };
 
-  
-  const isFormValid = datasetname && Datatype && dataCondetails;
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
+    console.log(datasetname, Datatype, dataCondetails)
+    const data = {datasetname, Datatype, dataCondetails};
+
+    fetch('http://localhost:3000/api/PostAllDataset', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.text())
+      .then(data => {
+        setdatasetname('')
+        setdatatype('')
+        setdataCondetails('')
+
+  
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+  }
+  const isFormValid = datasetname && Datatype && dataCondetails;
+  
   const handleChange = (e) => {
     if (e.target.name == "datasetname") {
       setdatasetname(e.target.value);
       
     }
-    if (e.target.name == "Datatype") {
+    else if (e.target.name == "Datatype") {
       setdatatype(e.target.value);
     }
-    if (e.target.name == "dataCondetails") {
+    else if (e.target.name == "dataCondetails") {
       setdataCondetails(e.target.value);
     }
   };
-
-
+  
+  //
+  // Example POST method implementation:
+  
   return (
     <div>
       <h1 className="text-[Red] text-4xl">New Dataset Details </h1>
@@ -50,7 +74,7 @@ function Slug(props) {
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.mb3}>
           <label htmlFor="datasetname" className={styles.formlabel}>
-            Enter Datset Name
+          datasetname
           </label>
           <input
             className={styles.input}
@@ -91,12 +115,11 @@ function Slug(props) {
             required
           />
         </div>
-        <input
-          disabled={!isFormValid}  
+        <button type="submit" disabled={!isFormValid}  
           onClick={togglePopup}
-          type="button"
-          value="OK"
-          className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2"
+          className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2">OK</button>
+        <input
+          
         /> 
         {isOpen && (
           <Datasubmitpopup
