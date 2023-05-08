@@ -14,6 +14,7 @@ function Slug() {
   const [btntext, setBtnText] = useState('Dark Mode Enabled')
 
   const togglestyle=()=> {
+    //can use the multiple state in one func
     if(tagstyle.tag.includes('text-white')) {
       setTagstyle({
         tag: `bg-[white] text-black`

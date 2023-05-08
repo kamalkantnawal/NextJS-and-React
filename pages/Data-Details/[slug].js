@@ -1,20 +1,21 @@
-import { data } from "autoprefixer";
+
 import Link from "next/link";
 import { React, useState } from "react";
-import { SiElasticsearch } from "react-icons/si";
-import Datasubmitpopup from "../NewData/datasubmitpopup";
+
+import Datasubmitpopup from "./datasubmitpopup";
 const styles = {
+  form: `inline-block`,
   DataNav: "flex cursor-pointer items-center space-x-5 py-3 text-2xl",
   elastcdata: "flex gap-2",
   input: `border-solid border-2 border-black-100`,
   mb3: `py-1 mr-10`,
 };
 
-function Slug() {
-  const [datasetname, setdatasetname] = useState(" ");
+function Slug(props) {
+  const [datasetname, setdatasetname] = useState("");
   const [Datatype, setdatatype] = useState("");
-  const [dataCondetails, setdataCondetails] = useState(" ");
-  const [savedatavalue, setsavedatavalue] = useState(false);
+  const [dataCondetails, setdataCondetails] = useState("");
+  
   //pop window property
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
@@ -23,22 +24,15 @@ function Slug() {
     }
   };
 
-  const savedata = () => {
-    if (datasetname == "kamal") {
-      savedatavalue("false");
-      console.log(savedatavalue);
-    } else {
-      setsavedatavalue("true");
-      console.log(setsavedatavalue);
-    }
-  };
-
+  
+  const isFormValid = datasetname && Datatype && dataCondetails;
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   const handleChange = (e) => {
     if (e.target.name == "datasetname") {
       setdatasetname(e.target.value);
+      
     }
     if (e.target.name == "Datatype") {
       setdatatype(e.target.value);
@@ -48,21 +42,12 @@ function Slug() {
     }
   };
 
+
   return (
     <div>
       <h1 className="text-[Red] text-4xl">New Dataset Details </h1>
-      {/*  <div className={styles.DataNav}>
-        <div className={styles.elastcdata}><span className="h-5 w-5" ></span>Elasticsearch</div>
-        <div>Library</div>
-        <div>Database</div>
-        <div>External files</div>
-        <div>HDFS</div>
-        <div>Google Spreadsheet</div>
-        <div>Form Data</div>
-      </div>
-      */}
 
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.mb3}>
           <label htmlFor="datasetname" className={styles.formlabel}>
             Enter Datset Name
@@ -74,7 +59,8 @@ function Slug() {
             onChange={handleChange}
             id="datasetname"
             name="datasetname"
-            aria-describedby="emailHelp"
+            aria-describedby="emailHelp"       
+            
           />
         </div>
         <div className={styles.mb3}>
@@ -106,19 +92,18 @@ function Slug() {
           />
         </div>
         <input
-          on
-          click={savedata}
+          disabled={!isFormValid}  
           onClick={togglePopup}
           type="button"
           value="OK"
           className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2"
-        />
+        /> 
         {isOpen && (
           <Datasubmitpopup
             content={
               <>
                 <b>New Dataset created</b>
-                <button className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2">
+                <button className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2 ">
                   <Link href="/AI2">Submit</Link>
                 </button>
               </>
