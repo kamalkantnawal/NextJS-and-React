@@ -39,13 +39,22 @@ function Slug() {
   const { slug } = router.query;
   return (
     <div>
-      <div className={tagstyle.tag}>
+      <div>
+        <h1>Edit the project</h1>
+        <p>Select the datasetfrom the list</p>
+        <div>dataset-1</div>
+        <div>dataset-2</div>
+        <div>dataset-3</div>
+        <div>dataset-4</div>
+        
+      </div>
+     {/* <div className={tagstyle.tag}>
       <h1 >{slug}  Details</h1>
       <p>Hello from tag</p>
       
       </div>
       <button onClick={togglestyle} className={btnstyle.btn}>{btntext}</button>
- 
+  */}
       
     </div>
   )

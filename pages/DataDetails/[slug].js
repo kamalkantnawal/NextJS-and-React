@@ -13,8 +13,8 @@ const styles = {
 
 function Slug(props) {
   const [datasetname, setdatasetname] = useState("");
-  const [Datatype, setdatatype] = useState("");
-  const [dataCondetails, setdataCondetails] = useState("");
+  const [Datatype, setdatatype] = useState("csv");
+  const [dataCondetails, setdataCondetails] = useState("supstore type");
   
   //pop window property
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ function Slug(props) {
     console.log(datasetname, Datatype, dataCondetails)
     const data = {datasetname, Datatype, dataCondetails};
 
-    fetch('http://localhost:3000/api/PostAllDataset', {
+    fetch('http://localhost:3000/api/mariadb', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -52,14 +52,14 @@ function Slug(props) {
   const isFormValid = datasetname && Datatype && dataCondetails;
   
   const handleChange = (e) => {
-    if (e.target.name == "datasetname") {
+    if (e.target.name === "datasetname") {
       setdatasetname(e.target.value);
       
     }
-    else if (e.target.name == "Datatype") {
+    else if (e.target.name === "Datatype") {
       setdatatype(e.target.value);
     }
-    else if (e.target.name == "dataCondetails") {
+    else if (e.target.name === "dataCondetails") {
       setdataCondetails(e.target.value);
     }
   };

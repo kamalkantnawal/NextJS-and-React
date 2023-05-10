@@ -8,7 +8,7 @@ function Projectlist(props) {
     <div>
       {props.Projects.map((project, index) => (
         <div key={index} className="flex gap-2 px-4 py-1">
-          <Link href="/"> {project} </Link>
+          <Link href="/Project-Details/project"> {project} </Link>
         </div>
       ))}
     </div>
