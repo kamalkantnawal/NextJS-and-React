@@ -29,6 +29,8 @@ export default async function handler(req, res) {
     // Perform your MySQL insert query here
     const query = `INSERT INTO datasets (datasetname, datatype, datadescription) VALUES ('${datasetname}', '${datatype}', '${datadescription}')`;
 
+    console.log("****************************"+query)
+
     // Execute the query
     connection.query(query, (error) => {
       if (error) {

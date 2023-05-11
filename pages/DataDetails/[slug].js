@@ -13,8 +13,8 @@ const styles = {
 
 function Slug(props) {
   const [datasetname, setdatasetname] = useState("");
-  const [Datatype, setdatatype] = useState("csv");
-  const [dataCondetails, setdataCondetails] = useState("supstore type");
+  const [datatype, setdatatype] = useState("");
+  const [datadescription, setdataCondetails] = useState("");
   
   //pop window property
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +26,8 @@ function Slug(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(datasetname, Datatype, dataCondetails)
-    const data = {datasetname, Datatype, dataCondetails};
+    console.log(datasetname, datatype, datadescription)
+    const data = {datasetname, datatype, datadescription};
 
     fetch('http://localhost:3000/api/mariadb', {
       method: 'POST', // or 'PUT'
@@ -37,29 +37,27 @@ function Slug(props) {
       body: JSON.stringify(data),
     })
       .then(response => response.text())
-      .then(data => {
+      .then((data) => {
         setdatasetname('')
         setdatatype('')
         setdataCondetails('')
-
-  
       })
       .catch((error) => {
         console.error('Error:', error);
       });
 
   }
-  const isFormValid = datasetname && Datatype && dataCondetails;
+  const isFormValid = datasetname && datatype && datadescription;
   
   const handleChange = (e) => {
     if (e.target.name === "datasetname") {
       setdatasetname(e.target.value);
       
     }
-    else if (e.target.name === "Datatype") {
+    else if (e.target.name === "datatype") {
       setdatatype(e.target.value);
     }
-    else if (e.target.name === "dataCondetails") {
+    else if (e.target.name === "datadescription") {
       setdataCondetails(e.target.value);
     }
   };
@@ -94,10 +92,10 @@ function Slug(props) {
           <input
             className={styles.input}
             type="text"
-            value={Datatype}
+            value={datatype}
             onChange={handleChange}
-            name="Datatype"
-            id="Datatype"
+            name="datatype"
+            id="datatype"
             aria-describedby="emailHelp"
           />
         </div>
@@ -108,10 +106,10 @@ function Slug(props) {
           <input
             className={styles.input}
             type="phone"
-            value={dataCondetails}
+            value={datadescription}
             onChange={handleChange}
-            name="dataCondetails"
-            id="dataCondetails"
+            name="datadescription"
+            id="datadescription"
             required
           />
         </div>
