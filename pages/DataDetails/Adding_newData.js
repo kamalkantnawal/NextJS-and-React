@@ -1,78 +1,73 @@
-
 import Link from "next/link";
 import { React, useState } from "react";
 
 import Datasubmitpopup from "./datasubmitpopup";
 const styles = {
-  form: `inline-block`,
-  DataNav: "flex cursor-pointer items-center space-x-5 py-3 text-2xl",
-  elastcdata: "flex gap-2",
-  input: `border-solid border-2 border-black-100`,
-  mb3: `py-1 mr-10`,
+  wrapper: `flex justify-center items-center min-h-screen`,
+  form: "w-full max-w-sm mx-auto",
+  formlabel: "block mb-2",
+  input: "w-full py-2 px-3 border border-gray-300 rounded",
+  mb3: "mb-3",
 };
 
-function Slug(props) {
+function Adding_newData(props) {
+  // Initializing state variables for dataset name, data type, and data description
   const [datasetname, setdatasetname] = useState("");
   const [datatype, setdatatype] = useState("");
   const [datadescription, setdataCondetails] = useState("");
-  
-  //pop window property
+
+  //// Initializing state variables for save data
   const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = () => {
-    if (!isOpen) {
-      setIsOpen(true);
-    }
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+  const closePopup = () => {
+    setIsOpen(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(datasetname, datatype, datadescription)
-    const data = {datasetname, datatype, datadescription};
+    const data = { datasetname, datatype, datadescription };
 
-    fetch('http://localhost:3000/api/mariadb', {
-      method: 'POST', // or 'PUT'
+    fetch("http://localhost:3000/api/mariadb", {
+      method: "POST", // or 'PUT'
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-      .then(response => response.text())
+      .then((response) => response.text())
       .then((data) => {
-        setdatasetname('')
-        setdatatype('')
-        setdataCondetails('')
+        setdatasetname("");
+        setdatatype("");
+        setdataCondetails("");
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
-
-  }
+  };
   const isFormValid = datasetname && datatype && datadescription;
-  
+
   const handleChange = (e) => {
     if (e.target.name === "datasetname") {
       setdatasetname(e.target.value);
-      
-    }
-    else if (e.target.name === "datatype") {
+    } else if (e.target.name === "datatype") {
       setdatatype(e.target.value);
-    }
-    else if (e.target.name === "datadescription") {
+    } else if (e.target.name === "datadescription") {
       setdataCondetails(e.target.value);
     }
   };
-  
-  //
-  // Example POST method implementation:
-  
+
   return (
-    <div>
-      <h1 className="text-[Red] text-4xl">New Dataset Details </h1>
+    <div className="wrapper">
+      <div  className="mx-auto">
+      <h1 className="w-full max-w-md mx-auto text-4xl py-5">Adding New Dataset Details </h1>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.mb3}>
           <label htmlFor="datasetname" className={styles.formlabel}>
-          datasetname
+            datasetname
           </label>
           <input
             className={styles.input}
@@ -81,8 +76,7 @@ function Slug(props) {
             onChange={handleChange}
             id="datasetname"
             name="datasetname"
-            aria-describedby="emailHelp"       
-            
+            aria-describedby="emailHelp"
           />
         </div>
         <div className={styles.mb3}>
@@ -113,28 +107,34 @@ function Slug(props) {
             required
           />
         </div>
-        <button type="submit" disabled={!isFormValid}  
-          onClick={togglePopup}
-          className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2">OK</button>
-        <input
-          
-        /> 
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          onClick={openPopup}
+          className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <a>OK</a>
+        </button>
+        <input />
         {isOpen && (
-          <Datasubmitpopup
-            content={
-              <>
-                <b>New Dataset created</b>
-                <button className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2 ">
-                  <Link href="/AI2">Submit</Link>
-                </button>
-              </>
-            }
-          />
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-slate-200 p-6 rounded-md shadow-md">
+              <p>New DataSet Has been Created</p>
+              <div className="flex justify-center mt-4">
+                <Link href="/AI2">
+                  <button className="px-6 py-2 text-white bg-green-500 rounded">
+                    OK
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         )}
       </form>
       <Datasubmitpopup />
+      </div>
     </div>
   );
 }
 
-export default Slug;
+export default Adding_newData;

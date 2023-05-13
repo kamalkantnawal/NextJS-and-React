@@ -1,4 +1,4 @@
-import React , {useState}from 'react'
+import React , {useState, useEffect}from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -37,15 +37,25 @@ function Slug() {
 
   const router = useRouter();
   const { slug } = router.query;
+  useEffect(() => {
+    // Redirect if slug value is not present or invalid
+    if (!slug) {
+      router.push('/404');
+    }
+  }, [slug, router]);
+
+  if (!slug) {
+    // Render a loading state or message here
+    return <div>Loading...</div>;
+  }
+  console.log("########################"+slug)
   return (
     <div>
       <div>
-        <h1>Edit the project</h1>
-        <p>Select the datasetfrom the list</p>
-        <div>dataset-1</div>
-        <div>dataset-2</div>
-        <div>dataset-3</div>
-        <div>dataset-4</div>
+        <h1>Edit the {slug}</h1>
+        <p></p>
+        <div>{slug}</div>
+
         
       </div>
      {/* <div className={tagstyle.tag}>

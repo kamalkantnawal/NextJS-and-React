@@ -12,8 +12,10 @@ const styles = {
 };
 
 const AI2 = () => {
+  //All use state are define here
   const [datas, setDatas] = useState([]);
-
+{
+  /*
   useEffect(() => {
     fetch("http://localhost:3000/api/PostAllDataset")
       .then((response) => response.json())
@@ -30,15 +32,23 @@ const AI2 = () => {
       });
   }, []);
 
+   */
+}
+
   return (
     <div>
+      {
+  /*
       {datas.map((item)=> {
         console.log(item)
       })}
+        */
+}
+
       <h1>Welcome to AI 2.O</h1>
       <div className={styles.wrapper}>
         <div className="px-3">
-          <Link href="/DataDetails/New-data-adding">
+          <Link href="/DataDetails/Adding_newData">
             <div className="py-1">
               <button className={styles.accentedButton}>
                 <span className={styles.plusiconcontainer}>
@@ -48,12 +58,10 @@ const AI2 = () => {
               </button>
             </div>
           </Link>
-
-          <DatasetList datasets={["Dataset-1", "Dataset-2", "Dataset-2", "Dataset-4"]} />
+          <DatasetList />
         </div>
-
-        <div className="px-3">
-          <Link href="/New-Project-Details/new-project">
+    <div className="px-3">
+          <Link href="/New-Project-Details/Adding_newProject">
             <div>
               <button className={styles.accentedButton}>
                 <span className={styles.plusiconcontainer}>

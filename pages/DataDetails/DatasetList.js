@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 const styles = {
@@ -7,9 +7,18 @@ const styles = {
 };
 
 const DatasetList = (props) => {
+  const url = "http://localhost:3000/api/mariadb";
+  const [data, setData] = useState([]);
+
+  
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((d) => setData(d))
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const openPopup = () => {
-    console.log("isopen is calling");
     setIsOpen(true);
   };
   const closePopup = () => {
@@ -17,9 +26,9 @@ const DatasetList = (props) => {
   };
   return (
     <div>
-      {props.datasets.map((dataset, index) => (
+      {data.map((dataset, index) => (
         <div key={index} className="flex gap-2 px-4 py-1">
-          <Link href="/"> {dataset} </Link>
+          <Link href="/Project-Details/Projectlist"> {dataset.datasetname} </Link>
           <a>
             {" "}
             <AiFillEdit
@@ -29,7 +38,7 @@ const DatasetList = (props) => {
           </a>
           {isOpen && (
             <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="bg-white p-6 rounded-md shadow-md">
+              <div className="bg-slate-200 p-6 rounded-md shadow-md">
                 <p>Edit the Dataset-1</p>
                 <div className="flex justify-end mt-4">
                   <button
