@@ -11,7 +11,7 @@ const styles = {
   plusiconcontainer: `cursor-pointer`,
 };
 
-const AI2 = () => {
+const AI2 = (props) => {
   //All use state are define here
   const [datas, setDatas] = useState([]);
 {
@@ -71,11 +71,19 @@ const AI2 = () => {
               </button>
             </div>
           </Link>
-          <Projectlist Projects={["Default Project", "Project-1", "Project-2", "Project-3"]} />
+          <Projectlist myprops={props.myprops} />
         </div>
       </div>
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  let data  = await fetch('http://localhost:3000/api/projectList')
+  let myprops = await data.json()
+  return {
+    props: {myprops}, // will be passed to the page component as props
+  };
+}
 
 export default AI2;

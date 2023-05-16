@@ -8,7 +8,9 @@ import DeleteDataFromMariaDb from "@/components/DeleteDataFromMariaDb.js"
 
 
 
-export default function Home() {
+
+export default function Home(props) {
+  //console.log("*************************", props)
 
   return (
    <>
@@ -18,7 +20,15 @@ export default function Home() {
    <Hm/>
    <DatafrommariaDB/>
    <DeleteDataFromMariaDb/>
+ 
    
    </>
   )
 }
+// export async function getServerSideProps(context) {
+//   let data  = await fetch('http://localhost:3000/api/projectList')
+//   let myprops = await data.json()
+//   return {
+//     props: {myprops}, // will be passed to the page component as props
+//   };
+// }
