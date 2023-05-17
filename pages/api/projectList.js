@@ -29,8 +29,6 @@ export default async function handler(req, res) {
     // Perform your MySQL insert query here
     const query = `INSERT INTO projects (projectName) VALUES ('${projectName}')`;
 
-  
-
     // Execute the query
     connection.query(query, (error) => {
       if (error) {
@@ -44,4 +42,3 @@ export default async function handler(req, res) {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
-

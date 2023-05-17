@@ -13,7 +13,12 @@ const PopupWindow = ({ onCancel, onOk }) => {
 
   return (
     <>
-      <button className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2" onClick={openPopup}>Edit</button>
+      <button
+        className="bg-black text-white py-2 px-8 rounded-full flex items-center justify-center gap-2"
+        onClick={openPopup}
+      >
+        Edit
+      </button>
 
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">

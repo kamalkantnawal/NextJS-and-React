@@ -1,9 +1,9 @@
-import * as fs from "fs";
+import * as fs from 'fs';
 export default async function handler(req, res) {
-  let data = await fs.promises.readdir("PostAllDataset");
+  let data = await fs.promises.readdir('PostAllDataset');
 
-  if (req.method === "POST") {
-    console.log("---------------" + data);
+  if (req.method === 'POST') {
+    console.log('---------------' + data);
     fs.promises.writeFile(
       `PostAllDataset/Dataset-${data.length + 1}.json`,
       JSON.stringify(req.body)

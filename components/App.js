@@ -9,8 +9,8 @@ const App = () => {
 
   const handleOk = () => {
     // Handle OK action
-    console.log("working");
-    <Link href="/AI2"></Link>
+    console.log('working');
+    <Link href="/AI2"></Link>;
   };
 
   return (

@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     // Perform your MySQL insert query here
     const query = `INSERT INTO datasets (datasetname, datatype, datadescription) VALUES ('${datasetname}', '${datatype}', '${datadescription}')`;
 
-    console.log("****************************"+query)
+    console.log('****************************' + query);
 
     // Execute the query
     connection.query(query, (error) => {
@@ -44,4 +44,3 @@ export default async function handler(req, res) {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
-

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import ListItem from './ListItem';
 
-
 export default function DeleteDataFromMariaDb() {
   const [items, setItems] = useState(['dataset1-1', 'dataset-2']);
 

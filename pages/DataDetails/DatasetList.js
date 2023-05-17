@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 const styles = {
   dataeditbutton: `h-6 w-6 fill-[#39caef]`,
   datadeletebutton: `h-5 w-5 fill-[#e31f1f]`,
 };
 
 const DatasetList = (props) => {
-  const url = "http://localhost:3000/api/mariadb";
+  const url = 'http://localhost:3000/api/mariadb';
   const [data, setData] = useState([]);
 
-  
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((d) => setData(d))
+      .then((d) => setData(d));
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +27,16 @@ const DatasetList = (props) => {
     <div>
       {data.map((dataset, index) => (
         <div key={index} className="flex gap-2 px-4 py-1">
-          <Link href="/Project-Details/Projectlist"> {dataset.datasetname} </Link>
+          <Link href="/Project-Details/Projectlist">
+            {' '}
+            {dataset.datasetname}{' '}
+          </Link>
           <a>
-            {" "}
+            {' '}
             <AiFillEdit
               onClick={openPopup}
               className={styles.dataeditbutton}
-            />{" "}
+            />{' '}
           </a>
           {isOpen && (
             <div className="fixed inset-0 flex items-center justify-center z-50">

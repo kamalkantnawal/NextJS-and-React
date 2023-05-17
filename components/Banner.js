@@ -1,8 +1,8 @@
-import Image from "next/image";
-import tcglogo from "/Images/tcglogo.png";
+import Image from 'next/image';
+import tcglogo from '/Images/tcglogo.png';
 
 const styles = {
-  accentedButton: "bg-black text-white py-2 px-4 rounded-full",
+  accentedButton: 'bg-black text-white py-2 px-4 rounded-full',
   content: `max-w-7xl flex-1 flex items-center justify-between`,
   wrapper: `h-max-[10rem] flex items-center justify-center bg-[#FCC017] border-y border-black py-3`,
 };

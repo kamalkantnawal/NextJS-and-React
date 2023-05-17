@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { AiFillPlusCircle } from "react-icons/ai";
-import DatasetList from "./DataDetails/DatasetList";
-import Projectlist from "./Project-Details/Projectlist";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { AiFillPlusCircle } from 'react-icons/ai';
+import DatasetList from './DataDetails/DatasetList';
+import Projectlist from './Project-Details/Projectlist';
 
 const styles = {
   wrapper: `flex items-center justify-center`,
@@ -14,8 +14,8 @@ const styles = {
 const AI2 = (props) => {
   //All use state are define here
   const [datas, setDatas] = useState([]);
-{
-  /*
+  {
+    /*
   useEffect(() => {
     fetch("http://localhost:3000/api/PostAllDataset")
       .then((response) => response.json())
@@ -33,17 +33,15 @@ const AI2 = (props) => {
   }, []);
 
    */
-}
+  }
 
   return (
     <div>
-      {
-  /*
+      {/*
       {datas.map((item)=> {
         console.log(item)
       })}
-        */
-}
+        */}
 
       <h1>Welcome to AI 2.O</h1>
       <div className={styles.wrapper}>
@@ -60,7 +58,7 @@ const AI2 = (props) => {
           </Link>
           <DatasetList />
         </div>
-    <div className="px-3">
+        <div className="px-3">
           <Link href="/New-Project-Details/Adding_newProject">
             <div>
               <button className={styles.accentedButton}>
@@ -79,10 +77,10 @@ const AI2 = (props) => {
 };
 
 export async function getServerSideProps(context) {
-  let data  = await fetch('http://localhost:3000/api/projectList')
-  let myprops = await data.json()
+  let data = await fetch('http://localhost:3000/api/projectList');
+  let myprops = await data.json();
   return {
-    props: {myprops}, // will be passed to the page component as props
+    props: { myprops }, // will be passed to the page component as props
   };
 }
 
