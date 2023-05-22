@@ -12,13 +12,14 @@ function Projectlist(props) {
     async function fetchProjectData() {
       const response = await fetch(url);
       const data = await response.json();
+
       setProjectName(data);
-      setIsLoading(false)
+      setIsLoading(false);
     }
     fetchProjectData();
   }, []);
-  if(isLoading) {
-    <h1>Loading</h1>
+  if (isLoading) {
+    <h1>Loading</h1>;
   }
   return (
     <div>

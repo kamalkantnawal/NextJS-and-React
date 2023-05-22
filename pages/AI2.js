@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import DatasetList from './DataDetails/DatasetList';
@@ -13,7 +13,7 @@ const styles = {
 
 const AI2 = (props) => {
   //All use state are define here
-  const [datas, setDatas] = useState([]);
+  //  const [datas, setDatas] = useState([]);
   {
     /*
   useEffect(() => {
