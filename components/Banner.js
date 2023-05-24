@@ -27,6 +27,7 @@ const Banner = () => {
         <Image
           className="hidden h-32 md:inline-flex object-contain flex-1"
           src={tcglogo.src}
+          alt="tcg"
           width={300}
           height={200}
         />

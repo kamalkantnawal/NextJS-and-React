@@ -16,7 +16,7 @@ function Adding_newData(props) {
   const [datatype, setdatatype] = useState('');
   const [datadescription, setdataCondetails] = useState('');
 
-  //// Initializing state variables for save data
+  // Initializing state variables for save data
   const [isOpen, setIsOpen] = useState(false);
 
   const openPopup = () => {
